@@ -1,0 +1,12 @@
+
+services:
+  frontend:
+    build: 
+      context: ./react_typescript_frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+
+      
