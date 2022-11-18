@@ -10,7 +10,7 @@ Welcome to Svelte-Typescript-Django Template's documentation!
    :maxdepth: 4
    :caption: Contents:
 
-   ./Svelte-Typescript frontend.rst
-   ./Django backend.rst
+
+   ./django rest backend.rst
 
 

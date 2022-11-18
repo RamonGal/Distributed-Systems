@@ -21,7 +21,8 @@
         <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Svelte-Typescript-Django Template’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,19 +40,25 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Django rest backend</a><ul>
-<li><a class="reference internal" href="#api-with-django-rest-framework">API WITH DJANGO REST FRAMEWORK</a></li>
-<li><a class="reference internal" href="#requirements">Requirements</a></li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#structure">Structure</a></li>
-<li><a class="reference internal" href="#use">Use</a></li>
-<li><a class="reference internal" href="#create-users-and-tokens">Create users and Tokens</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Django rest backend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-with-django-rest-framework">API WITH DJANGO REST FRAMEWORK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use">Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-users-and-tokens">Create users and Tokens</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-endpoints-and-methods">API Endpoints and Methods</a></li>
 </ul>
 </li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -68,7 +75,7 @@
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Django rest backend</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/Django backend.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/django rest backend.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -81,9 +88,8 @@
 <section id="api-with-django-rest-framework">
 <h2>API WITH DJANGO REST FRAMEWORK<a class="headerlink" href="#api-with-django-rest-framework" title="Permalink to this heading"></a></h2>
 <p>[Django REST framework](<a class="reference external" href="http://www.django-rest-framework.org/">http://www.django-rest-framework.org/</a>) is a powerful and flexible toolkit for building Web APIs.</p>
-</section>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Python 3.6</p></li>
 <li><p>Django 3.1</p></li>
@@ -91,7 +97,7 @@
 </ul>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
 <p>After you cloned the repository, you want to create a virtual environment, so you have a clean python installation.
 You can do this by running the command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
@@ -104,11 +110,11 @@ You can do this by running the command</p>
 </div>
 </section>
 <section id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading"></a></h2>
+<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this heading"></a></h3>
 <p>In a RESTful API, endpoints (URLs) define the structure of the API and how end users access data from our application using the HTTP methods - GET, POST, PUT, DELETE. Endpoints should be logically organized around _collections_ and _elements_, both of which are resources.</p>
 </section>
 <section id="use">
-<h2>Use<a class="headerlink" href="#use" title="Permalink to this heading"></a></h2>
+<h3>Use<a class="headerlink" href="#use" title="Permalink to this heading"></a></h3>
 <p>We can test the API using [curl](<a class="reference external" href="https://curl.haxx.se/">https://curl.haxx.se/</a>) or [httpie](<a class="reference external" href="https://github.com/jakubroztocil/httpie#installation">https://github.com/jakubroztocil/httpie#installation</a>), or we can use [Postman](<a class="reference external" href="https://www.postman.com/">https://www.postman.com/</a>)</p>
 <p>Httpie is a user-friendly http client that’s written in Python. Let’s try and install that.</p>
 <p>You can install httpie using pip:</p>
@@ -119,6 +125,10 @@ You can do this by running the command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this heading"></a></h2>
 <p>Only authenticated users can use the API services, for that reason if we try this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">service</span><span class="o">/</span>
 </pre></div>
@@ -137,9 +147,8 @@ You can do this by running the command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>  <span class="s2">&quot;title&quot;</span><span class="p">:</span>  <span class="s2">&quot;Avengers&quot;</span><span class="p">,</span>  <span class="s2">&quot;genre&quot;</span><span class="p">:</span>  <span class="s2">&quot;Superheroes&quot;</span><span class="p">,</span>  <span class="s2">&quot;year&quot;</span><span class="p">:</span>  <span class="mi">2012</span><span class="p">,</span>  <span class="s2">&quot;creator&quot;</span><span class="p">:</span>  <span class="s2">&quot;admin&quot;</span>  <span class="p">}</span>
 </pre></div>
 </div>
-</section>
 <section id="create-users-and-tokens">
-<h2>Create users and Tokens<a class="headerlink" href="#create-users-and-tokens" title="Permalink to this heading"></a></h2>
+<h3>Create users and Tokens<a class="headerlink" href="#create-users-and-tokens" title="Permalink to this heading"></a></h3>
 <p>First we need to create a user, so we can log in</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">POST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">register</span><span class="o">/</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;email@email.com&quot;</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;USERNAME&quot;</span> <span class="n">password1</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span> <span class="n">password2</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span>
 </pre></div>
@@ -170,11 +179,18 @@ We can use the refresh token to request a need access token.</p>
 </div>
 </section>
 </section>
+<section id="api-endpoints-and-methods">
+<h2>API Endpoints and Methods<a class="headerlink" href="#api-endpoints-and-methods" title="Permalink to this heading"></a></h2>
+<p>Safada</p>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Svelte-Typescript-Django Template’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

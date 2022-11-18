@@ -2,14 +2,14 @@ Django rest backend
 ================================
 
 API WITH DJANGO REST FRAMEWORK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 [Django REST framework](http://www.django-rest-framework.org/) is a powerful and flexible toolkit for building Web APIs.
 
 Requirements
 ~~~~~~~~~~~~~~~~~
-- Python 3.6
-- Django 3.1
+- Python
+- Django
 - Django REST Framework
 
 Installation
@@ -56,6 +56,10 @@ First, we have to start up Django's development server.
     
     python manage.py runserver
 
+
+
+Authentication
+-------------------
 
 Only authenticated users can use the API services, for that reason if we try this:
 
@@ -131,3 +135,7 @@ and we will get a new access token
     {
         "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM"
     }
+
+API Endpoints and Methods
+-------------------------------
+Safada
