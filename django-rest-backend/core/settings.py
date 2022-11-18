@@ -7,16 +7,18 @@ BASE_DIR = Path(__file__).parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
+SECRET_KEY = os.environ.get("SECRET_KEY", default="S#perS3crEt_1122")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'super_secret_key'
+DEBUG = int(os.environ.get("DEBUG", default=1))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# # ssl
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-ALLOWED_HOSTS = []
+# load production server from .env
+# 20.3.55.94', 'localhost', '0.0.0.0', '0.0.0.0:6379', 'localhost:85', 'localhost:6379', '127.0.0.1', '[::1]', '10.0.0.103', config('SERVER', default='127.0.0.1')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', os.environ.get('SERVER', default='127.0.0.1')]
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://' + os.environ.get('SERVER', default='127.0.0.1')]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -44,7 +46,8 @@ INSTALLED_APPS = [
     'authentication',
 
     # personal apps
-
+    'api',
+    
     # third party
     'django_filters',
 ]
