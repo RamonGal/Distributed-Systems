@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 dependencies
 RUN apt-get update --fix-missing
-RUN apt-get install -y libpq-dev python3-pip python-dev postgresql postgresql-contrib
+RUN apt-get install -y libpq-dev python3-pip python-dev 
 RUN apt-get install -y netcat
 
 RUN pip install --upgrade pip
@@ -28,7 +28,7 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 COPY . .
 
 # staticfiles
-RUN python manage.py collectstatic --no-input --clear -i node_modules
+RUN python manage.py collectstatic --no-input --clear 
 
 
 # run entrypoint.sh
