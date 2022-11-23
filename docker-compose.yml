@@ -39,7 +39,6 @@ services:
         ports:
             - 6379:6379
 
-
     wsgiserver:
         build:            
             context: ./django-rest-backend
@@ -53,7 +52,6 @@ services:
             - static_volume:/usr/src/app/staticfiles/
         links:
             - postgres
-
 
     asgiserver:
         build:            

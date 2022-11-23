@@ -9,7 +9,4 @@
 
 # Cloud implementation for the project
 
-Idealized to be implemented in AWS using terraform or pulumi to define the infrastructure. Using a load balancer to manage the proxies between the servers and extrenal users.
-
-
-
+Idealized to be implemented in AWS using terraform or pulumi to define the infrastructure. Using a load balancer to manage the proxies between the servers and external users.
