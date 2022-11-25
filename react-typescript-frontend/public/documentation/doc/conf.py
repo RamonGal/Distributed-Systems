@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Svelte-Typescript-Django Template'
+project = 'Distributed Systems'
 copyright = '2022, Ramon Galate'
 author = 'Ramon Galate'
 

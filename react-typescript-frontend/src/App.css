@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-    --g1: rgb(98, 0, 234);
-    --g2: rgb(236, 64, 122);
+    --g1:hsl(var(--p));
+    --g2:hsl(var(--s));
 }
 
 @keyframes background-pan {
@@ -16,7 +16,7 @@
     }
 }
 
-body {
+#tile-grid {
     animation: background-pan 10s linear infinite;
     background: linear-gradient(
         to right,
@@ -30,19 +30,19 @@ body {
     margin: 0px;
 }
 
-body.toggled {
+#tile-grid.toggled {
     animation: none;
 }
 
-body.toggled > #title {
+#tile-grid.toggled > #title {
     opacity: 0;
 }
 
-body.toggled > #icon {
+#tile-grid.toggled > #icon {
     opacity: 1;
 }
 
-body.toggled > #tiles > .tile:hover {
+#tile-grid.toggled > #tiles > .tile:hover {
     opacity: 0.1 !important;
 }
 
@@ -51,6 +51,7 @@ body.toggled > #tiles > .tile:hover {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 #tiles {
@@ -82,7 +83,7 @@ body.toggled > #tiles > .tile:hover {
 
 #title {
     color: white;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 6vw;
     margin: 0px;
     pointer-events: none;
@@ -109,7 +110,7 @@ body.toggled > #tiles > .tile:hover {
 
 /* -- YouTube Link Styles -- */
 
-body.menu-toggled > .meta-link > span {
+#tile-grid.menu-toggled > .meta-link > span {
     color: rgb(30, 30, 30);
 }
 
@@ -117,7 +118,9 @@ body.menu-toggled > .meta-link > span {
     bottom: 60px;
 }
 
-
+#docs-link {
+    bottom: 110px;
+}
 
 .meta-link {
     align-items: center;
@@ -150,6 +153,6 @@ body.menu-toggled > .meta-link > span {
 
 .meta-link > span {
     color: white;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
     transition: color 400ms;
 }

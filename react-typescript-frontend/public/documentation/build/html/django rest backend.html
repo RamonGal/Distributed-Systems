@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Django rest backend &mdash; Svelte-Typescript-Django Template  documentation</title>
+  <title>Django rest backend &mdash; Distributed Systems  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to Svelte-Typescript-Django Template’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Welcome to Distributed System’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,7 +30,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Svelte-Typescript-Django Template
+            <a href="index.html" class="icon icon-home"> Distributed Systems
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -65,7 +65,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Svelte-Typescript-Django Template</a>
+          <a href="index.html">Distributed Systems</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -91,8 +91,8 @@
 <section id="requirements">
 <h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>Python 3.6</p></li>
-<li><p>Django 3.1</p></li>
+<li><p>Python</p></li>
+<li><p>Django</p></li>
 <li><p>Django REST Framework</p></li>
 </ul>
 </section>
@@ -140,22 +140,19 @@ You can do this by running the command</p>
 </pre></div>
 </div>
 <p>Instead, if we try to access with credentials:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">movies</span><span class="o">/</span><span class="mi">3</span> <span class="s2">&quot;Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span> <span class="s2">&quot;Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM&quot;</span>
 </pre></div>
 </div>
-<p>we get the movie with id = 3</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>  <span class="s2">&quot;title&quot;</span><span class="p">:</span>  <span class="s2">&quot;Avengers&quot;</span><span class="p">,</span>  <span class="s2">&quot;genre&quot;</span><span class="p">:</span>  <span class="s2">&quot;Superheroes&quot;</span><span class="p">,</span>  <span class="s2">&quot;year&quot;</span><span class="p">:</span>  <span class="mi">2012</span><span class="p">,</span>  <span class="s2">&quot;creator&quot;</span><span class="p">:</span>  <span class="s2">&quot;admin&quot;</span>  <span class="p">}</span>
-</pre></div>
-</div>
+<p>we get the service json as a return</p>
 <section id="create-users-and-tokens">
 <h3>Create users and Tokens<a class="headerlink" href="#create-users-and-tokens" title="Permalink to this heading"></a></h3>
 <p>First we need to create a user, so we can log in</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">POST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">register</span><span class="o">/</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;email@email.com&quot;</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;USERNAME&quot;</span> <span class="n">password1</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span> <span class="n">password2</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">POST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">register</span><span class="o">/</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;email@email.com&quot;</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;USERNAME&quot;</span> <span class="n">password1</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span> <span class="n">password2</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span>
 </pre></div>
 </div>
 <p>After we create an account we can use those credentials to get a token</p>
 <p>To get a token first we need to request</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">token</span><span class="o">/</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;username&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">token</span><span class="o">/</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;username&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span>
 </pre></div>
 </div>
 <p>after that, we get the token</p>
@@ -168,13 +165,18 @@ You can do this by running the command</p>
 <p>We got two tokens, the access token will be used to authenticated all the requests we need to make, this access token will expire after some time.
 We can use the refresh token to request a need access token.</p>
 <p>requesting new access token</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">token</span><span class="o">/</span><span class="n">refresh</span><span class="o">/</span> <span class="n">refresh</span><span class="o">=</span><span class="s2">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxNjI5MjMyMSwianRpIjoiNGNkODA3YTlkMmMxNDA2NWFhMzNhYzMxOTgyMzhkZTgiLCJ1c2VyX2lkIjozfQ.hP1wPOPvaPo2DYTC9M1AuOSogdRL_mGP30CHsbpf4zA&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">token</span><span class="o">/</span><span class="n">refresh</span><span class="o">/</span> <span class="n">refresh</span><span class="o">=</span><span class="s2">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxNjI5MjMyMSwianRpIjoiNGNkODA3YTlkMmMxNDA2NWFhMzNhYzMxOTgyMzhkZTgiLCJ1c2VyX2lkIjozfQ.hP1wPOPvaPo2DYTC9M1AuOSogdRL_mGP30CHsbpf4zA&quot;</span>
 </pre></div>
 </div>
 <p>and we will get a new access token</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;access&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM&quot;</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+<p>or to verify the token from a third party page using the requests library</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="n">rs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/api/auth/token/verify/&#39;</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
 </section>
@@ -189,7 +191,7 @@ We can use the refresh token to request a need access token.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Svelte-Typescript-Django Template’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Distributed System’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

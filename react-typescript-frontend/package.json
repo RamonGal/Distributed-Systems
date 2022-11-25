@@ -20,6 +20,7 @@
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.8",
         "@types/animejs": "^3.1.6",
+        "@types/node": "^18.11.9",
         "@types/react": "^18.0.17",
         "@types/react-dom": "^18.0.6",
         "@vitejs/plugin-react": "^2.1.0",

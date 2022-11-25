@@ -131,11 +131,12 @@ and we will get a new access token
         "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM"
     }
 
-or to verify the token from a third party page
+or to verify the token from a third party page using the requests library
 
-::
+.. code-block:: python
 
-    http http://127.0.0.1:8000/api/auth/token/verify/ refresh="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxNjI5MjMyMSwianRpIjoiNGNkODA3YTlkMmMxNDA2NWFhMzNhYzMxOTgyMzhkZTgiLCJ1c2VyX2lkIjozfQ.hP1wPOPvaPo2DYTC9M1AuOSogdRL_mGP30CHsbpf4zA"
+    import requests as rs
+    rs.get('http://localhost:8000/api/auth/token/verify/', headers = {'Authorization': f'Bearer {token}'})
 
 API Endpoints and Methods
 -------------------------------

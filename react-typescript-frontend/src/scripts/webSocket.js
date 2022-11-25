@@ -1,7 +1,7 @@
 const userIdElement = document.getElementById('user_id');
 const textContent = userIdElement != null ? userIdElement.textContent : '';
 const userRoom = JSON.parse( textContent != null ? textContent : '') ;
-
+import {verifyToken} from './src/scripts/verifyToken';
 //settup the websocket route
 var socket_start;
 if (location.protocol !== 'https:') {
@@ -19,6 +19,8 @@ const userSocket = new WebSocket(
     + userRoom
     + '/'
 );
+
+
 
 userSocket.onmessage = function(e) {
     const data = JSON.parse(e.data).message;

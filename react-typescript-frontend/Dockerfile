@@ -6,6 +6,6 @@ COPY ./ ./
 # documentation route
 COPY ../documenation.html ./public
 COPY ../build ./public/
-RUN npm i
+RUN npm i --legacy-peer-deps
 EXPOSE 3000
 CMD ["npm", "run", "dev"]

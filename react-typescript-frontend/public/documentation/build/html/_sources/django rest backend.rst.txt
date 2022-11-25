@@ -8,8 +8,8 @@ API WITH DJANGO REST FRAMEWORK
 
 Requirements
 ~~~~~~~~~~~~~~~~~
-- Python 3.6
-- Django 3.1
+- Python
+- Django
 - Django REST Framework
 
 Installation
@@ -80,15 +80,10 @@ Instead, if we try to access with credentials:
 
 ::
 
-    http http://127.0.0.1:8000/api/v1/movies/3 "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM"
+    http http://127.0.0.1:8000/api/ "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM"
 
 
-we get the movie with id = 3
-
-::
-
-    {  "title":  "Avengers",  "genre":  "Superheroes",  "year":  2012,  "creator":  "admin"  }
-
+we get the service json as a return 
 
 Create users and Tokens
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,7 +92,7 @@ First we need to create a user, so we can log in
 
 ::
 
-    http POST http://127.0.0.1:8000/api/v1/auth/register/ email="email@email.com" username="USERNAME" password1="PASSWORD" password2="PASSWORD"
+    http POST http://127.0.0.1:8000/api/auth/register/ email="email@email.com" username="USERNAME" password1="PASSWORD" password2="PASSWORD"
 
 
 After we create an account we can use those credentials to get a token
@@ -106,7 +101,7 @@ To get a token first we need to request
 
 ::
     
-    http http://127.0.0.1:8000/api/v1/auth/token/ username="username" password="password"
+    http http://127.0.0.1:8000/api/auth/token/ username="username" password="password"
 
 
 after that, we get the token
@@ -125,7 +120,7 @@ requesting new access token
 
 ::
 
-    http http://127.0.0.1:8000/api/v1/auth/token/refresh/ refresh="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxNjI5MjMyMSwianRpIjoiNGNkODA3YTlkMmMxNDA2NWFhMzNhYzMxOTgyMzhkZTgiLCJ1c2VyX2lkIjozfQ.hP1wPOPvaPo2DYTC9M1AuOSogdRL_mGP30CHsbpf4zA"
+    http http://127.0.0.1:8000/api/auth/token/refresh/ refresh="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxNjI5MjMyMSwianRpIjoiNGNkODA3YTlkMmMxNDA2NWFhMzNhYzMxOTgyMzhkZTgiLCJ1c2VyX2lkIjozfQ.hP1wPOPvaPo2DYTC9M1AuOSogdRL_mGP30CHsbpf4zA"
 
 
 and we will get a new access token
@@ -135,6 +130,13 @@ and we will get a new access token
     {
         "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE2MjA4Mjk1LCJqdGkiOiI4NGNhZmMzMmFiZDA0MDQ2YjZhMzFhZjJjMmRiNjUyYyIsInVzZXJfaWQiOjJ9.NJrs-sXnghAwcMsIWyCvE2RuGcQ3Hiu5p3vBmLkHSvM"
     }
+
+or to verify the token from a third party page using the requests library
+
+.. code-block:: python
+
+    import requests as rs
+    rs.get('http://localhost:8000/api/auth/token/verify/', headers = {'Authorization': f'Bearer {token}'})
 
 API Endpoints and Methods
 -------------------------------
