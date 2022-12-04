@@ -1,21 +1,24 @@
+
+version: "3.7"
+
 services:
     nginx:
-            container_name: nginx
-            restart: always
-            build: ./nginx
-            ports:
-                - 80:80
-            volumes:
-                - static_volume:/usr/src/app/staticfiles/
-            depends_on:
-                - wsgiserver
-                - asgiserver
-                - frontend
+        container_name: nginx
+        restart: always
+        build: ./nginx
+        ports:
+            - 80:80
+        volumes:
+            - static_volume:/usr/src/app/staticfiles/
+        depends_on:
+            - wsgiserver
+            - asgiserver
+            - frontend
 
     frontend:
         build: 
-        context: ./react_typescript_frontend
-        dockerfile: Dockerfile
+            context: ./react_typescript_frontend
+            dockerfile: Dockerfile
         volumes:
             - ./:/app
         ports:
@@ -64,3 +67,4 @@ services:
             - ./.env
         links:
             - redis
+
