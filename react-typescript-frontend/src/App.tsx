@@ -84,6 +84,8 @@ function App() {
                 Click me for
             <span className="fancy">Magic</span>.
             </h1>
+
+            <div id="img-container" className="img-container">
     
     
             <a id="docs-link" className="meta-link" href="documentation/documentation.html" target="_blank">
