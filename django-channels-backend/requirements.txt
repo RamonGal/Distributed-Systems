@@ -7,4 +7,5 @@ msgpack==1.0.4
 packaging==21.3
 pyparsing==3.0.9
 redis==4.3.5
+redlock==1.2.0
 sqlparse==0.4.3
