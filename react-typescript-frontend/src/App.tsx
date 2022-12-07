@@ -4,6 +4,7 @@ import './App.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faCheckToSlot, faBook } from '@fortawesome/free-solid-svg-icons';
 import anime from "animejs/lib/anime.es.js"
+import useWebSocket from 'react-use-websocket';
 
 function App() {
     const [size, setSize] = useState(document.body.clientWidth > 800 ? 100 : 50);
@@ -17,7 +18,20 @@ function App() {
             { "--rows": rows } as CSSProperties,
         )
     )
-
+    
+    const { lastJsonMessage, sendMessage } = useWebSocket('ws://localhost:3001', {
+        onOpen: () => console.log(`Connected to App WS`),
+        onMessage: () => {
+            if (lastJsonMessage) {
+            console.log(lastJsonMessage);
+            }
+        },
+        queryParams: { 'token': '123456' },
+        onError: (event) => { console.error(event); },
+        shouldReconnect: (closeEvent) => true,
+        reconnectInterval: 3000
+    });
+    
     //change size of tiles based on window size, if window is resized
     const handleResize = () => {
         setSize(document.body.clientWidth > 800 ? 100 : 50);
@@ -85,7 +99,7 @@ function App() {
             <span className="fancy">Magic</span>.
             </h1>
 
-            <div id="img-container" className="img-container">
+            <div id="img-container" className="img-container"></div>
     
     
             <a id="docs-link" className="meta-link" href="documentation/documentation.html" target="_blank">
