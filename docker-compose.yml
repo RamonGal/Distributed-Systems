@@ -2,18 +2,6 @@
 version: "3.7"
 
 services:
-    jsonrpc:
-        container_name: jsonrpc
-        restart: on-failure
-        build: ./jsonrpc-ai-backend
-        ports:
-            - "5000:5000"
-        deploy:
-            mode: replicated
-            replicas: 4
-        command: python server.py
-
-
     nginx:
         container_name: nginx
         restart: always
@@ -46,6 +34,17 @@ services:
             - 5432:5432
         env_file:
             - ./.env.db
+            
+    jsonrpc:
+        container_name: jsonrpc
+        restart: on-failure
+        build: ./jsonrpc-ai-backend
+        ports:
+            - "4000:4000"
+        deploy:
+            mode: replicated
+            replicas: 4
+        command: python server.py
 
     redis:
         container_name: redis
@@ -67,6 +66,7 @@ services:
             - static_volume:/usr/src/app/staticfiles/
         links:
             - postgres
+            - jsonrpc
 
     asgiserver:
         build:            

@@ -9,9 +9,8 @@ class Consumer(WebsocketConsumer):
         # room name reflects the page that wishes to connect to
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_names = [
-            'election', 
-            f'vote_{self.room_name}',
-            f'unlock_{self.room_name}'
+            'election',
+            f'user_{self.room_name}'
         ]
         self.redlock = Redlock([{"host": "localhost", "port": 6379}])
 
@@ -36,7 +35,7 @@ class Consumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
         msg_type = text_data_json['type']
-        msg_group = text_data_json['group']
+        msg_group = f'user_{text_data_json["user_id"]}'
 
         if msg_type == 'unlock':
             lock_check = self.redlock.unlock("election")
@@ -55,7 +54,7 @@ class Consumer(WebsocketConsumer):
                 async_to_sync(self.channel_layer.group_send)(
                     msg_group,
                     {
-                        'type': 'unlock',
+                        'type': 'lock_msg',
                         'message': {
                             'success': False,
                             'type': 'unlock',
@@ -75,7 +74,7 @@ class Consumer(WebsocketConsumer):
             lock_check = self.redlock.lock("election", 100) 
             if lock_check:
                 async_to_sync(self.channel_layer.group_send)(
-                    msg_group,
+                    'election',
                     {
                         'type': msg_type,
                         'message': message,
@@ -93,17 +92,7 @@ class Consumer(WebsocketConsumer):
                         },
                     }
                 ) 
-            # Send message channel_name to avoid sending to self
-            async_to_sync(self.channel_layer.group_send)(
-                msg_group,
-                {
-                    'type': msg_type,
-                    'message': message,
-                    'sender_channel_name': self.channel_name
-                }
-            )
-
-
+                
     # Receive message from room group, function name matches the event type
     def election(self, event):
         # lock election to avoid double election

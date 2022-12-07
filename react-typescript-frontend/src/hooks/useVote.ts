@@ -1,9 +1,17 @@
-import { useEffect } from 'react';
-import { JsonObject } from 'react-use-websocket/dist/lib/types';
 
-const useVote = (message: JsonObject) => {
+// based on the vote props send a websocket message to the server
+import { useEffect } from 'react';
+
+const useVote = (sendWSMessage: Function, id: number, vote_bool:boolean) => {
+    const voteMsgDict = {
+        "type": "vote",
+        "user_id": id,
+        "message": {
+            "vote_bool": vote_bool
+        }
+    }
     useEffect(() => {
-        
+        sendWSMessage(voteMsgDict)
     }, []);
 };
 

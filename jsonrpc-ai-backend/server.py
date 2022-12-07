@@ -100,7 +100,10 @@ def styleTransfer(**kwargs):
 
     try:
         # delete the images from the previous run and return the base64 encoded output image
-        return True, delete_intermediate_images_and_return_base64_out()
+        return {
+            "success": True,
+            "img": delete_intermediate_images_and_return_base64_out()
+        }
     except:
         return {
             "success": False, 

@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import {notifi} from '@/components';
-import { JsonObject } from 'react-use-websocket/dist/lib/types';
 
 // show alert when timer is up, with title, message and timer animation
 const useTimerAlert = (title:string, message:string) => {
