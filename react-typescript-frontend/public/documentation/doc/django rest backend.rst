@@ -138,6 +138,3 @@ or to verify the token from a third party page using the requests library
     import requests as rs
     rs.get('http://localhost:8000/api/auth/token/verify/', headers = {'Authorization': f'Bearer {token}'})
 
-API Endpoints and Methods
--------------------------------
-Safada
