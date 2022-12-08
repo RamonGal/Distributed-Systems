@@ -16,4 +16,4 @@ Idealized to be implemented in AWS using terraform or pulumi to define the infra
 
 The architecture of the services were made to follow this cloud structure:
 
-![alt text](https://github.com/RamonGal/Distributed-Systems/blob/main/DAT.png?raw=true)The rest of the documentation can be found on the documentation.html in the root of the repo.  Which you can clone to analyse the code with it.
+![alt text](https://github.com/RamonGal/Distributed-Systems/blob/main/DAT.png?raw=true)The rest of the documentation can be found on the github pages of the repository.
