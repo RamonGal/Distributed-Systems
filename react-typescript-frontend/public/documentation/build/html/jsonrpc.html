@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON-RPC 2.0 &mdash; Distributed Systems  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Style transfer" href="style_transfer.html" />
+    <link rel="prev" title="Django rest backend" href="django%20rest%20backend.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Distributed Systems
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="django%20rest%20backend.html">Django rest backend</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JSON-RPC 2.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#server">Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client">Client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="style_transfer.html">Style transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="channels.html">Django channels - Async Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">The licenses</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Distributed Systems</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>JSON-RPC 2.0</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/jsonrpc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="json-rpc-2-0">
+<h1>JSON-RPC 2.0<a class="headerlink" href="#json-rpc-2-0" title="Permalink to this heading"></a></h1>
+<p>JsonRPC is a simple JSON-RPC 2.0 server/client implementation in Python.
+<a class="reference external" href="https://json-rpc.readthedocs.io/en/latest/">https://json-rpc.readthedocs.io/en/latest/</a></p>
+<section id="server">
+<h2>Server<a class="headerlink" href="#server" title="Permalink to this heading"></a></h2>
+<p>This server inplements a three level style-transfer API. The style transfer used was inpired by the paper [A Neural Algorithm of Artistic Style](<a class="reference external" href="https://arxiv.org/abs/1508.06576">https://arxiv.org/abs/1508.06576</a>) by Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge.
+and the implementation of <a class="reference external" href="https://github.com/jcjohnson/neural-style">https://github.com/jcjohnson/neural-style</a>.</p>
+<p>The server is defined in the file <cite>server.py</cite> and it is accessible through http calls:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dispatcher</span><span class="o">.</span><span class="n">add_method</span>
+<span class="k">def</span> <span class="nf">styleTransfer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">img</span>  <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">]</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;style&quot;</span><span class="p">]</span>
+    <span class="n">style_weight</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;style_weight&quot;</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># make the content and style images from the base64 encoded strings</span>
+        <span class="n">make_base_images</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;error while making base images&quot;</span>
+        <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># perform style transfer in lower sized layers to reduce time between each run</span>
+        <span class="n">level1_style_transfer</span><span class="p">(</span><span class="n">style_weight</span><span class="p">)</span>
+        <span class="n">level2_style_transfer</span><span class="p">(</span><span class="n">style_weight</span><span class="p">)</span>
+        <span class="n">level3_style_transfer</span><span class="p">(</span><span class="n">style_weight</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;error while performing style transfer&quot;</span>
+        <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># delete the images from the previous run and return the base64 encoded output image</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;img&quot;</span><span class="p">:</span> <span class="n">delete_intermediate_images_and_return_base64_out</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;error while deleting intermediate images and returning base64 encoded output image&quot;</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@Request</span><span class="o">.</span><span class="n">application</span>
+<span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">JSONRPCResponseManager</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dispatcher</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run_simple</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="n">application</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At each level of the style transfer, the number of iterations lower and the image size increases.
+This is done so we can test the structure of the API and the server, using only CPUs, but in the Cloud documentation we go through how such a system could be brought to production.</p>
+</section>
+<section id="client">
+<h2>Client<a class="headerlink" href="#client" title="Permalink to this heading"></a></h2>
+<p>This server is defined in the rest API that stores images and will also be implemented in front-end service, so as to lower the number of data transfers between services and to help maintain the lamport syncronization by not blocking the server between requests to the rpc method.
+With the front-end service, the user will be able to upload images and select the style image and the style weight. The front-end service will then send a request to the rest API, which will then send a request to the rpc server. The rpc server will then perform the style transfer and return the base64 encoded output image to the rpc service while assyncrously awaiting for the response of the api.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+    <span class="n">content_img</span> <span class="o">=</span> <span class="n">Roll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="p">)</span><span class="o">.</span><span class="n">png</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+    <span class="n">style_img</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;style_img&#39;</span><span class="p">)</span>
+    <span class="n">style_weight</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;style_weight&#39;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:4000/jsonrpc&quot;</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;content-type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+
+    <span class="c1"># Example echo method</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;styleTransfer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;img&quot;</span><span class="p">:</span> <span class="n">content_img</span><span class="p">,</span>
+            <span class="s2">&quot;style&quot;</span><span class="p">:</span> <span class="n">style_img</span><span class="p">,</span>
+            <span class="s2">&quot;style_weight&quot;</span><span class="p">:</span> <span class="n">style_weight</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;request&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;jsonrpc&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Error in style transfer&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;img&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">]},</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="django%20rest%20backend.html" class="btn btn-neutral float-left" title="Django rest backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="style_transfer.html" class="btn btn-neutral float-right" title="Style transfer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Ramon Galate.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

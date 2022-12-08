@@ -15,6 +15,7 @@ export interface UserData {
     id: number,
     email: string,
     auth_token: string, 
+    refresh_token: string,
 }
 
 function App() {
@@ -28,11 +29,9 @@ function App() {
     };
     return (
         <Routes>
-            <Route index element={<Landing />} />
             <Route path="login" element={<Login />} />
             <Route element={<ProtectedRoute isAllowed={!!user} />}>
-                <Route path="home" element={<Home />} />
-                <Route path="dashboard" element={<Dashboard />} />
+                <Route index element={<Home />} />
             </Route>
         </Routes>
     )

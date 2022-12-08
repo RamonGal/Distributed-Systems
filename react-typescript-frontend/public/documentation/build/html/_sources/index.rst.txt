@@ -12,5 +12,9 @@ Welcome to Distributed System's documentation!
 
 
    ./django rest backend.rst
+   ./jsonrpc.rst
+   ./style_transfer.rst
+   ./channels.rst
+   ./licenses.rst
 
 

@@ -140,7 +140,7 @@ function Home() {
             <input type="checkbox" id="vote-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
+                    <h3 className="font-bold text-lg">Select or upload style image for style transfer</h3>
                     <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
                     <div className="modal-action">
                     <label htmlFor="vote-modal" className="btn">Yay!</label>
