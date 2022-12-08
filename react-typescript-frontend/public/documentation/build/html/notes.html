@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Distributed Systems  documentation</title>
+  <title>Author note: &mdash; Distributed Systems  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -21,7 +21,8 @@
         <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="The licenses" href="licenses.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,12 +41,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="django%20rest%20backend.html">Django rest backend</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jsonrpc.html">JSON-RPC 2.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="style_transfer.html">Style transfer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="channels.html">Django channels - Async Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="licenses.html">The licenses</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Author note:</a></li>
 </ul>
 
         </div>
@@ -62,7 +64,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>&lt;no title&gt;</li>
+      <li>Author note:</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/notes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,20 +74,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>A note:
-This project was supposed to represent a working distributed system that uses a certain amount of things defined by my professor.</p>
+  <section id="author-note">
+<h1>Author note:<a class="headerlink" href="#author-note" title="Permalink to this heading"></a></h1>
+<p>This project was supposed to represent a working distributed system that uses a certain amount of things defined by my professor.</p>
+<p>Lamport clocks - The users are to have syncronous events on their screen (the changing images described that use the style transfer, in each of their )</p>
+<p>Messaging between services: Rpc and django channels + websockets + redis cache for locking the election process based on a bully algorithm where a user asks for the right to change the image style in real time to all users and begin an election process for who can perform the artistical act of his choice.</p>
+<p>For this algorithm, you would be able to change the background of the image freely using difussion algorithms and style transfer independently via a voting platform where the users can vote on the type of art presented and the machine learning algorithm that will be used to perform the artistical change to the image.</p>
+<p>The image itself could be changed to a video and stream style transfers live to the users by learning the gradient descent necessary to perform the style transfer of the initial first frame of the video. Then, on frame 2, the gradient would begin from the same values on the same position of frame 1. This garanties a low computational cost for the style transfer and a high quality of the video. The video could be streamed to the users in real time, by making ECS/EKS mlfow instances that would be able to perform the style transfer assyncronouly by cutting the video into smaller patches of MxL pixels that could be processed in parallel by the instances. The instances would be able to communicate with each other via a message broker and the results would be sent to the users via a websocket connection. The users would be able to vote on the type of art presented and more types of algorithms could be added, infinetly, held back by costs.</p>
+<p>The algorithm in choice can be described in terms of containers, that are discribed in the docker-compose.yml file.</p>
+<p>The containers are:</p>
 <ul class="simple">
-<li><p>Lamport clocks - The users are to have syncronous events on their screen (the changing images described that use the style transfer, in each of their )</p></li>
+<li><p>React-Typescript front-end + Hooks + RPC client + websocket</p></li>
+<li><p>Django rest backend + Postgres/GraphQL for user generated data and image management (+ perhaps ES3 buckets/Data lakes for image storage)</p></li>
+<li><p>Redis cache</p></li>
+<li><p>JsonRPC (there is one avalaible in rust for parallel tasks and python for GPU intensive tasks on ECS tasks or kubeflow clusters)</p></li>
+<li><p>Django channels + websockets + redis manipulation</p></li>
 </ul>
-<p>Following this structure:</p>
+<p>Following this structure, it would be possible to have a distributed system that uses the lamport clocks to syncronous events
+:</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/DAT.png"><img alt="_images/DAT.png" src="_images/DAT.png" style="width: 100%;" /></a>
 </figure>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="licenses.html" class="btn btn-neutral float-left" title="The licenses" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

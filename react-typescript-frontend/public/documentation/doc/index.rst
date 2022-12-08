@@ -16,5 +16,6 @@ Welcome to Distributed System's documentation!
    ./style_transfer.rst
    ./channels.rst
    ./licenses.rst
+   ./notes.rst
 
 

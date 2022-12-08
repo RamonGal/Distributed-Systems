@@ -18,5 +18,4 @@ The architecture of the services were made to follow this cloud structure:
 
 ![alt text](https://github.com/RamonGal/Distributed-Systems/blob/main/DAT.png?raw=true)![alt text](https://github.com/RamonGal/Distributed-Systems/blob/main/DAT.png?raw=true)
 
-
-The rest of the documentation can be found on the github actions hosted
+The rest of the documentation can be found on the documentation.html that when you clone the repo.
