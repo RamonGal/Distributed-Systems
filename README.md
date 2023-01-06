@@ -7,6 +7,7 @@
 * An algorithm for mutual exclusion using a redis Redlock was made and the above mentioned timestamp helps determines the pace with which we can apply changes to the shared state.
 * The algorithm that changes the view images with user input was implemented as a JsonRPC system that handles concurrent API calls from multiples parallel users and distributes it to replicas whose calls are distributed with a service distributor using docker compose in development, but should be made with a service like ECS or EKS or Kubeflow in production.
 * The algorithm in question is a style transfer for an image that is downsized than style transfered multiple times, than upsampled and transfered again, with less iterations. This is done to avoid long epoch time since github pages only has CPU.
+* The tests are to be done in PyTest and cypres.
 
 ### This project is still in development.
 
